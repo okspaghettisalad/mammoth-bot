@@ -3,7 +3,10 @@ from discord import client
 from discord.ext import commands
 #import pynacl
 
-TOKEN = 'OTMxOTM0MTgyODY1NzkzMDY0.YeLpVw.8ar4nuPFqk7ovWp-4iNjLirj4v8'
+with open('token.txt') as token:
+    TOKEN = token.read()
+    token.close
+
 client = discord.Client()
 bot = commands.Bot(command_prefix="!")
 
