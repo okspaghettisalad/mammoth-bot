@@ -20,6 +20,7 @@ async def incarnations(ctx, arg=None):
 > > !extinction\n\n\
 *( !incarnations <command> for more info )*', reference=ctx.message)
 
+    # each line gets its own send() because otherwise every embed would appear below all messages
     elif str(arg) == 'mammoth':
         await ctx.send('> !mammoth <type>', reference=ctx.message)
         await ctx.send('https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif')
