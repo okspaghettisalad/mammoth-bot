@@ -9,6 +9,7 @@ with open('token.txt') as token:
 client = discord.Client()
 bot = commands.Bot(command_prefix="!")
 
+
 @bot.command()
 async def incarnations(ctx, cmd=None, arg=None):
     if cmd == None:
@@ -22,9 +23,8 @@ async def incarnations(ctx, cmd=None, arg=None):
 > > **!thoughts** | he\'ll speak his mind\n\
 *!incarnations <command> for more info*', reference=ctx.message)
 
-
-    # each line gets its own send() because otherwise every embed would appear below all messages
     elif str(cmd) == 'mammoth':
+        # !incarnations mammoth (no <type>)
         if arg == None:
             await ctx.send('\
 **!mammoth <type> | mammoth image based on <type>**\n\
@@ -41,7 +41,7 @@ async def incarnations(ctx, cmd=None, arg=None):
 !incarnations mammoth <type> *for more info*\n\
 > *<type> =* classic *for info about defualt mammoth*', reference=ctx.message)
 
-
+        # !incrnations mammoth <type>
         elif str(arg).lower() == 'classic': await ctx.send('\
 https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
 > **no type provided**', reference=ctx.message)
@@ -128,11 +128,13 @@ async def extinction(ctx):
         await vc.disconnect()
         await ctx.send('oooooooooooaahhahaghagahgahagahahahhhhhahahhhhh *dies*')
 
+
 @bot.command()
 async def origins(ctx):
     await ctx.send('\
 > *bot by okspaghettisalad#0056*\n\
 > https://github.com/okspaghettisalad/mammoth-bot', reference=ctx.message)
+
 
 mammothLetters = ('a','o','h','gh')
 @bot.command()
@@ -170,9 +172,11 @@ async def thoughts(ctx, *words):
     await ctx.send(''.join([str(elem) for elem in mammothMessage]), reference=ref)
     if deleteMessage: await ctx.message.delete()
 
+
 """@client.event
 async def on_ready():
     print(f'Logged in as {client}')"""
+
 
 #client.run(TOKEN)
 bot.run(TOKEN)
