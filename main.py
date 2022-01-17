@@ -1,4 +1,4 @@
-import discord, random
+import discord, random, string
 from discord import client
 from discord.ext import commands
 
@@ -136,6 +136,7 @@ async def origins(ctx):
 > https://github.com/okspaghettisalad/mammoth-bot', reference=ctx.message)
 
 
+alphabet = list(string.ascii_lowercase)
 mammothLetters = ('a','o','h','gh')
 @bot.command()
 async def thoughts(ctx, *words):
@@ -161,9 +162,10 @@ async def thoughts(ctx, *words):
     mammothMessage = []
     for word in inputMessage:
         for char in range(len(word)):
-
-            newChar = mammothLetters[random.randint(0, len(mammothLetters)-1)]
-            if word[char].isupper(): newChar = newChar.upper()
+            if word[char] not in alphabet: newChar = word[char]
+            else:
+                newChar = mammothLetters[random.randint(0, len(mammothLetters)-1)]
+                if word[char].isupper(): newChar = newChar.upper()
             mammothMessage.append(newChar)
             
         mammothMessage.append(' ')
