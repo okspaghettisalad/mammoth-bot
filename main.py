@@ -1,4 +1,4 @@
-import discord
+import discord, random
 from discord import client
 from discord.ext import commands
 
@@ -19,6 +19,7 @@ async def incarnations(ctx, cmd=None, arg=None):
 > > **!noises** | *play noises*\n\
 > > **!extinction** | *disconnect mammoth from channel*\n\
 > > **!origins** | *bot information*\n\
+> > **!thoughts** | he\'ll speak his mind\n\
 *!incarnations <command> for more info*', reference=ctx.message)
 
 
@@ -35,7 +36,7 @@ async def incarnations(ctx, cmd=None, arg=None):
 > > **now** | *NOW! (youtyu  be ,com /watch?v=T-BOPr7NXME)*\n\
 > > **pe / desolate** | *it\'s an empty husk.*\n\
 > > **ghastly** | *blink and chance never catching another glimpse*\n\
-> > **ansestor** | *they know where to throw a good party*\n\
+> > **ancestor** | *they know where to throw a good party*\n\
 \n\
 !incarnations mammoth <type> *for more info*\n\
 > *<type> =* classic *for info about defualt mammoth*', reference=ctx.message)
@@ -127,13 +128,47 @@ async def extinction(ctx):
         await vc.disconnect()
         await ctx.send('oooooooooooaahhahaghagahgahagahahahhhhhahahhhhh *dies*')
 
-
 @bot.command()
 async def origins(ctx):
     await ctx.send('\
 > *bot by okspaghettisalad#0056*\n\
 > https://github.com/okspaghettisalad/mammoth-bot', reference=ctx.message)
 
+mammothLetters = ('a','o','h','gh')
+@bot.command()
+async def thoughts(ctx, *words):
+    # translate the words after !thoughts and in the same message
+    if len(words) != 0:
+        #inputMessage = ' '.join([str(elem) for elem in words])
+        inputMessage = words
+        ref = ctx.message
+        deleteMessage = False
+
+    else:
+        deleteMessage = True
+        # translate the last message in the channel
+        if ctx.message.reference == None:
+            ref = await ctx.channel.history(limit=2).flatten()
+            ref = ref[1]
+
+        #translate the message that the command message replies to
+        else:
+            ref = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+        inputMessage = ref.content.split() # split the message into a list of words
+
+    mammothMessage = []
+    for word in inputMessage:
+        for char in range(len(word)):
+
+            newChar = mammothLetters[random.randint(0, len(mammothLetters)-1)]
+            if word[char].isupper(): newChar = newChar.upper()
+            mammothMessage.append(newChar)
+            
+        mammothMessage.append(' ')
+    mammothMessage.pop(len(mammothMessage)-1) # remove the space after the last word
+
+    await ctx.send(''.join([str(elem) for elem in mammothMessage]), reference=ref)
+    if deleteMessage: await ctx.message.delete()
 
 """@client.event
 async def on_ready():
