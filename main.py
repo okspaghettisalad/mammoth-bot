@@ -37,6 +37,7 @@ async def incarnations(ctx, cmd=None, arg=None):
 > > **pe / desolate** | *it\'s an empty husk.*\n\
 > > **ghastly** | *blink and chance never catching another glimpse*\n\
 > > **ancestor** | *they know where to throw a good party*\n\
+> > **gains** | *big gains*\n\
 \n\
 !incarnations mammoth <type> *for more info*\n\
 > *<type> =* classic *for info about defualt mammoth*', reference=ctx.message)
@@ -62,6 +63,13 @@ https://cdn.discordapp.com/attachments/818925860379557928/932032179029028894/unk
 https://cdn.discordapp.com/attachments/818925860379557928/932034707410014278/IMG_0407.png\n\
 > **type:  ancestor**', reference=ctx.message)
 
+        elif str(arg).lower() == 'gains': await ctx.send('\
+https://\n\
+media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
+https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
+https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif#\n\
+> **type: gains**', reference=ctx.message)
+
 
 @bot.command()
 async def mammoth(ctx, arg=None):
@@ -81,6 +89,13 @@ async def mammoth(ctx, arg=None):
 
     elif str(arg).lower() == 'ancestor':
         link = 'https://cdn.discordapp.com/attachments/818925860379557928/932034707410014278/IMG_0407.png'
+
+    elif str(arg).lower() == 'gains':
+        link = '\
+https://\n\
+media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
+https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
+https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif#'
 
     else: link = 'https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif'
 
@@ -162,12 +177,12 @@ async def thoughts(ctx, *words):
     mammothMessage = []
     for word in inputMessage:
         for char in range(len(word)):
-            if word[char] not in alphabet: newChar = word[char]
+            if word[char].lower() not in alphabet: newChar = word[char]
             else:
                 newChar = mammothLetters[random.randint(0, len(mammothLetters)-1)]
                 if word[char].isupper(): newChar = newChar.upper()
             mammothMessage.append(newChar)
-            
+
         mammothMessage.append(' ')
     mammothMessage.pop(len(mammothMessage)-1) # remove the space after the last word
 
