@@ -38,6 +38,7 @@ async def incarnations(ctx, cmd=None, arg=None):
 > > **ghastly** | *blink and chance never catching another glimpse*\n\
 > > **ancestor** | *they know where to throw a good party*\n\
 > > **gains** | *big gains*\n\
+> > **moon** | *have you ever wondered, what if?*\n\
 \n\
 !incarnations mammoth <type> *for more info*\n\
 > *<type> =* classic *for info about defualt mammoth*', reference=ctx.message)
@@ -69,6 +70,10 @@ media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
 https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
 https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif#\n\
 > **type: gains**', reference=ctx.message)
+        
+        elif str(arg).lower() == 'moon': await ctx.send('\
+https://cdn.discordapp.com/attachments/472407264700006420/937003559885619241/ezgif.com-gif-maker_2.gif\n\
+> **type: moon**', reference=ctx.message)
 
 
 @bot.command()
@@ -96,6 +101,9 @@ https://\n\
 media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
 https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif\n\
 https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif#'
+
+    elif str(arg).lower() == 'moon':
+        link = 'https://cdn.discordapp.com/attachments/472407264700006420/937003559885619241/ezgif.com-gif-maker_2.gif'
 
     else: link = 'https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif'
 
