@@ -104,6 +104,7 @@ https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m
 
     elif str(arg).lower() == 'moon':
         link = 'https://cdn.discordapp.com/attachments/472407264700006420/937003559885619241/ezgif.com-gif-maker_2.gif'
+        ref=None
 
     else: link = 'https://media.discordapp.net/attachments/802674631717814312/915674691283333130/m.gif'
 
